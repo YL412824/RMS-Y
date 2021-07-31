@@ -79,7 +79,8 @@ export default {
   },
   proxy: {
     '/api': {
-      target: 'http://localhost',
+      // target: 'http://localhost',
+      target: 'http://u3797369y1.zicp.vip/',
       changeOrigin: true,
       pathRewrite: { '^/api': '' },
     },

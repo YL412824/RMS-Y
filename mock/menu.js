@@ -77,12 +77,14 @@ function getFakeRoutes(req, res) {
             path: 'http://localhost:7002',
             target: '_blank',
             code: 'admin',
-            name: '服务治理',
+            // name: '服务治理',
+            name: '工作人员调度表',
           },
           {
             path: '/monitor/log',
             code: 'log',
-            name: '日志管理',
+            // name: '日志管理',
+            name: '观众分流管理表',
             children: [
               {
                 path: '/monitor/log/usual',
@@ -630,7 +632,8 @@ function getFakeList(req, res) {
           id: '10',
           code: 'log',
           parentId: 'system',
-          name: '日志管理',
+          // name: '日志管理',
+          name: '观众分流管理表',
           path: '/system/log',
           source: 'setting',
           category: '1',
@@ -721,7 +724,8 @@ function getFakeTree(req, res) {
         {
           value: 'log',
           key: 'log',
-          title: '日志管理',
+          // title: '日志管理',
+          title: '观众分流管理表',
         },
       ],
     }
