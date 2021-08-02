@@ -51,28 +51,16 @@ class Notice extends PureComponent {
 
     return (
       <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
+
         <Col md={6} sm={24}>
-          <FormItem label={<FormattedMessage id="desk.notice.category" />}>
-            {getFieldDecorator('category')(
-              <Select placeholder={formatMessage({ id: 'desk.notice.category.placeholder' })}>
-                {category.map(d => (
-                  <Select.Option key={d.dictKey} value={d.dictKey}>
-                    {d.dictValue}
-                  </Select.Option>
-                ))}
-              </Select>
-            )}
-          </FormItem>
-        </Col>
-        <Col md={6} sm={24}>
-          <FormItem label={<FormattedMessage id="desk.notice.title" />}>
+          <FormItem label={<FormattedMessage id="desk.notice.museum_name" />}>
             {getFieldDecorator('title')(
               <Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />
             )}
           </FormItem>
         </Col>
-        <Col md={6} sm={24}>
-          <FormItem label={<FormattedMessage id="desk.notice.date" />}>
+        <Col md={12} sm={24}>
+          <FormItem label={<FormattedMessage id="desk.notice.create_time" />}>
             {getFieldDecorator('dateRange')(
               <RangePicker
                 placeholder={[
@@ -109,20 +97,48 @@ class Notice extends PureComponent {
 
     const columns = [
       {
+        title: formatMessage({ id: 'desk.notice.museum_name' }),
+        dataIndex: 'museum_name',
+      },
+      {
+        title: formatMessage({ id: 'desk.notice.link_name' }),
+        dataIndex: 'link_name',
+      },
+      {
+        title: formatMessage({ id: 'desk.notice.link_phone' }),
+        dataIndex: 'link_phone',
+      },
+      {
+        title: formatMessage({ id: 'desk.notice.location' }),
+        dataIndex: 'location',
+      },
+      {
+        title: formatMessage({ id: 'desk.notice.num' }),
+        dataIndex: 'num',
+      },
+      {
         title: formatMessage({ id: 'desk.notice.title' }),
         dataIndex: 'title',
       },
       {
-        title: formatMessage({ id: 'desk.notice.category' }),
-        dataIndex: 'categoryName',
+        title: formatMessage({ id: 'desk.notice.lines' }),
+        dataIndex: 'lines',
       },
       {
-        title: formatMessage({ id: 'desk.notice.content' }),
-        dataIndex: 'content',
+        title: formatMessage({ id: 'desk.notice.audit_state' }),
+        dataIndex: 'audit_state',
       },
       {
-        title: formatMessage({ id: 'desk.notice.date' }),
-        dataIndex: 'releaseTime',
+        title: formatMessage({ id: 'desk.notice.audit_name' }),
+        dataIndex: 'audit_name',
+      },
+      {
+        title: formatMessage({ id: 'desk.notice.create_name' }),
+        dataIndex: 'create_name',
+      },
+      {
+        title: formatMessage({ id: 'desk.notice.create_time' }),
+        dataIndex: 'create_time',
       },
     ];
 

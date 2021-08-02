@@ -71,6 +71,56 @@ class NoticeAdd extends PureComponent {
       <Panel title={<FormattedMessage id="button.add.name" />} back="/desk/notice" action={action}>
         <Form hideRequiredMark style={{ marginTop: 8 }}>
           <Card bordered={false}>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.museum_name" />}>
+              {getFieldDecorator('museum_name', {
+                rules: [
+                  {
+                    required: true,
+                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                  },
+                ],
+              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+            </FormItem> 
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.link_name" />}>
+              {getFieldDecorator('link_name', {
+                rules: [
+                  {
+                    required: true,
+                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                  },
+                ],
+              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+            </FormItem>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.link_phone" />}>
+              {getFieldDecorator('link_phone', {
+                rules: [
+                  {
+                    required: true,
+                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                  },
+                ],
+              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+            </FormItem>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.location" />}>
+              {getFieldDecorator('location', {
+                rules: [
+                  {
+                    required: true,
+                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                  },
+                ],
+              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+            </FormItem> 
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.num" />}>
+              {getFieldDecorator('num', {
+                rules: [
+                  {
+                    required: true,
+                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                  },
+                ],
+              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+            </FormItem> 
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.title" />}>
               {getFieldDecorator('title', {
                 rules: [
@@ -81,8 +131,48 @@ class NoticeAdd extends PureComponent {
                 ],
               })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
             </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.category" />}>
-              {getFieldDecorator('category', {
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.lines" />}>
+              {getFieldDecorator('lines', {
+                rules: [
+                  {
+                    required: true,
+                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                  },
+                ],
+              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+            </FormItem>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.audit_state" />}>
+              {getFieldDecorator('audit_state', {
+                rules: [
+                  {
+                    required: true,
+                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                  },
+                ],
+              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+            </FormItem>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.audit_name" />}>
+              {getFieldDecorator('audit_name', {
+                rules: [
+                  {
+                    required: true,
+                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                  },
+                ],
+              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+            </FormItem>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.create_name" />}>
+              {getFieldDecorator('create_name', {
+                rules: [
+                  {
+                    required: true,
+                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                  },
+                ],
+              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+            </FormItem>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.type_name" />}>
+              {getFieldDecorator('type_name', {
                 rules: [
                   {
                     required: true,

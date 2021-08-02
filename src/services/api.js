@@ -111,6 +111,11 @@ export async function queryNotices() {
   return request('/api/blade-desk/notice/my-notices');
 }
 
+export async function queryMuseums() {
+  return request('/api/blade-desk/museum/my-museums');
+}
+
+
 export async function getFakeCaptcha(mobile) {
   return request(`/api/captcha?mobile=${mobile}`);
 }

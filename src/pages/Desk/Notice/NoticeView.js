@@ -59,16 +59,16 @@ class NoticeAdd extends PureComponent {
       <Panel title={<FormattedMessage id="button.view.name" />} back="/desk/notice" action={action}>
         <Card bordered={false}>
           <Form hideRequiredMark style={{ marginTop: 8 }}>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.title" />}>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.museum_name" />}>
               <span>{detail.title}</span>
             </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.category" />}>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.location" />}>
               <span>{detail.categoryName}</span>
             </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.date" />}>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.create_name" />}>
               <span>{detail.releaseTime}</span>
             </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.content" />}>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.create_time" />}>
               <span>{detail.content}</span>
             </FormItem>
           </Form>

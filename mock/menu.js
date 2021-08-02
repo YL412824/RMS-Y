@@ -167,6 +167,43 @@ function getFakeButtons(req, res) {
         ],
       },
       {
+        code: 'museum',
+        children: [
+          {
+            code: 'museum_add',
+            name: '新增',
+            path: '/desk/museum/add',
+            source: 'plus',
+            action: 1,
+            alias: 'add',
+          },
+          {
+            code: 'museum_edit',
+            name: '修改',
+            path: '/desk/museum/edit',
+            source: 'form',
+            action: 2,
+            alias: 'edit',
+          },
+          {
+            code: 'museum_delete',
+            name: '删除',
+            path: '/api/blade-system/dept/remove',
+            source: 'delete',
+            action: 3,
+            alias: 'delete',
+          },
+          {
+            code: 'museum_view',
+            name: '查看',
+            path: '/desk/museum/view',
+            source: 'file-text',
+            action: 2,
+            alias: 'view',
+          },
+        ],
+      },
+      {
         code: 'user',
         children: [
           {

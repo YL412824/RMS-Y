@@ -6,6 +6,7 @@ export default {
   'menu.dashboard.workplace': 'Workplace',
   'menu.desk': 'desktop',
   'menu.desk.notice': 'notice',
+  'menu.desk.museum': 'museum',
   'menu.base': 'base',
   'menu.base.region': 'region',
   'menu.system': 'system',

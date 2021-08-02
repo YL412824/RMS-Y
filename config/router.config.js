@@ -88,6 +88,16 @@ export default [
               { path: '/desk/notice/view/:id', component: './Desk/Notice/NoticeView' },
             ],
           },
+          {
+            path: '/desk/museum',
+            routes: [
+              { path: '/desk/museum', redirect: '/desk/museum/list' },
+              { path: '/desk/museum/list', component: './Desk/Museum/Museum' },
+              { path: '/desk/museum/add', component: './Desk/Museum/MuseumAdd' },
+              { path: '/desk/museum/edit/:id', component: './Desk/Museum/MuseumEdit' },
+              { path: '/desk/museum/view/:id', component: './Desk/Museum/MuseumView' },
+            ],
+          },
         ],
       },
       {
