@@ -9,6 +9,7 @@ export default {
   'menu.desk.museum': 'museum',
   'menu.base': 'base',
   'menu.base.region': 'region',
+  'menu.base.order': 'order',
   'menu.system': 'system',
   'menu.system.user': 'user',
   'menu.system.dept': 'department',

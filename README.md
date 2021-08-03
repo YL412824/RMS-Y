@@ -39,7 +39,8 @@ SpringBlade
 ├── blade-gateway -- Spring Cloud 网关
 ├── blade-ops -- 运维中心
 ├    ├── blade-admin -- spring-cloud后台管理
-├    ├── blade-develop -- 代码生成
+<!-- ├    ├── blade-develop -- 代码生成 -->
+├    ├── blade-develop -- 志愿者中心
 ├    ├── blade-resource -- 资源管理
 ├    ├── blade-seata-order -- seata分布式事务demo
 ├    ├── blade-seata-storage -- seata分布式事务demo

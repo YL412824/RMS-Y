@@ -158,28 +158,44 @@ class Code extends PureComponent {
 
     const columns = [
       {
-        title: '模块名',
-        dataIndex: 'codeName',
+        title: '用户名',
+        dataIndex: 'username',
       },
       {
-        title: '服务名',
-        dataIndex: 'serviceName',
+        title: '密码',
+        dataIndex: 'password',
       },
       {
-        title: '表名',
-        dataIndex: 'tableName',
+        title: '博物馆名称',
+        dataIndex: 'museum_name',
       },
       {
-        title: '表前缀',
-        dataIndex: 'tablePrefix',
+        title: '用户身份名称',
+        dataIndex: 'type_name',
       },
       {
-        title: '主键名',
-        dataIndex: 'pkName',
+        title: '创建时间',
+        dataIndex: 'create_time',
       },
       {
-        title: '包名',
-        dataIndex: 'packageName',
+        title: '创建人名称',
+        dataIndex: 'create_name',
+      },
+      {
+        title: '修改时间',
+        dataIndex: 'update_time',
+      },
+      {
+        title: '修改人名称',
+        dataIndex: 'update_name',
+      },
+      {
+        title: '审核状态',
+        dataIndex: 'audit_state',
+      },
+      {
+        title: '审核人名称',
+        dataIndex: 'audit_name',
       },
     ];
 

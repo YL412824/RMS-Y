@@ -27,12 +27,12 @@ function getFakeRoutes(req, res) {
           {
             path: '/system/user',
             code: 'user',
-            name: '用户管理',
+            name: '客流动态数据展示',
           },
           {
             path: '/system/dept',
             code: 'dept',
-            name: '部门管理',
+            name: '工作人员调度管理',
           },
           {
             path: '/system/dict',
@@ -114,7 +114,7 @@ function getFakeRoutes(req, res) {
           {
             path: '/tool/code',
             code: 'code',
-            name: '代码生成',
+            name: '志愿者中心',
           },
         ],
       },
@@ -603,7 +603,7 @@ function getFakeList(req, res) {
           id: '4',
           code: 'user',
           parentId: 'system',
-          name: '用户管理',
+          name: '客流动态数据展示',
           path: '/system/user',
           source: 'setting',
           category: '1',
@@ -614,7 +614,7 @@ function getFakeList(req, res) {
           id: '5',
           code: 'dept',
           parentId: 'system',
-          name: '部门管理',
+          name: '工作人员调度管理',
           path: '/system/dept',
           source: 'setting',
           category: '1',
@@ -731,12 +731,12 @@ function getFakeTree(req, res) {
         {
           value: 'user',
           key: 'user',
-          title: '用户管理',
+          title: '客流动态数据展示',
         },
         {
           value: 'dept',
           key: 'dept',
-          title: '部门管理',
+          title: '工作人员调度管理',
         },
         {
           value: 'dict',
@@ -809,7 +809,7 @@ function getFakeGrantTree(req, res) {
       children: [
         {
           key: 'user',
-          title: '用户管理',
+          title: '客流动态数据展示',
           children: [
             {
               key: 'user_add',
@@ -831,7 +831,7 @@ function getFakeGrantTree(req, res) {
         },
         {
           key: 'dept',
-          title: '部门管理',
+          title: '工作人员调度管理',
           children: [
             {
               key: 'dept_add',

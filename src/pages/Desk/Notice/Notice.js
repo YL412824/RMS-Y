@@ -117,10 +117,6 @@ class Notice extends PureComponent {
         dataIndex: 'num',
       },
       {
-        title: formatMessage({ id: 'desk.notice.title' }),
-        dataIndex: 'title',
-      },
-      {
         title: formatMessage({ id: 'desk.notice.lines' }),
         dataIndex: 'lines',
       },
