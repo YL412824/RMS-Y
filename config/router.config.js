@@ -89,13 +89,13 @@ export default [
             ],
           },
           {
-            path: '/desk/museum',
+            path: '/desk/activity',
             routes: [
-              { path: '/desk/museum', redirect: '/desk/museum/list' },
-              { path: '/desk/museum/list', component: './Desk/Museum/Museum' },
-              { path: '/desk/museum/add', component: './Desk/Museum/MuseumAdd' },
-              { path: '/desk/museum/edit/:id', component: './Desk/Museum/MuseumEdit' },
-              { path: '/desk/museum/view/:id', component: './Desk/Museum/MuseumView' },
+              { path: '/desk/activity', redirect: '/desk/activity/list' },
+              { path: '/desk/activity/list', component: './Desk/Activity/Activity' },
+              { path: '/desk/activity/add', component: './Desk/Activity/ActivityAdd' },
+              { path: '/desk/activity/edit/:id', component: './Desk/Activity/ActivityEdit' },
+              { path: '/desk/activity/view/:id', component: './Desk/Activity/ActivityView' },
             ],
           },
         ],
@@ -108,6 +108,16 @@ export default [
             routes: [
               { path: '/base/region', redirect: '/base/region/detail' },
               { path: '/base/region/detail', component: './Base/Region/Region' },
+            ],
+          },
+          {
+            path: '/base/order',
+            routes: [
+              { path: '/base/order', redirect: '/base/order/list' },
+              { path: '/base/order/list', component: './Base/Order/Order' },
+              { path: '/base/order/add', component: './Base/Order/OrderAdd' },
+              { path: '/base/order/edit/:id', component: './Base/Order/OrderEdit' },
+              { path: '/base/order/view/:id', component: './Base/Order/OrderView' },
             ],
           },
         ],
@@ -283,6 +293,107 @@ export default [
               {
                 path: '/tool/datasource/view/:id',
                 component: './System/DataSource/DataSourceView',
+              },
+            ],
+          },
+          // 新增
+          {
+            path: '/rms',
+            routes: [
+              {
+                path: '/rms/user',
+                routes: [
+                  { path: '/rms/user', redirect: '/rms/user/list' },
+                  { path: '/rms/user/list', component: './Rms/User/User' },
+                  { path: '/rms/user/add', component: './Rms/User/UserAdd' },
+                  { path: '/rms/user/edit/:id', component: './Rms/User/UserEdit' },
+                  { path: '/rms/user/view/:id', component: './Rms/User/UserView' },
+                ],
+              },
+              {
+                path: '/rms/dict',
+                routes: [
+                  { path: '/rms/dict', redirect: '/rms/dict/list' },
+                  { path: '/rms/dict/list', component: './Rms/Dict/Dict' },
+                  { path: '/rms/dict/add', component: './Rms/Dict/DictAdd' },
+                  { path: '/rms/dict/add/:id', component: './Rms/Dict/DictAdd' },
+                  { path: '/rms/dict/edit/:id', component: './Rms/Dict/DictEdit' },
+                  { path: '/rms/dict/view/:id', component: './Rms/Dict/DictView' },
+                ],
+              },
+              {
+                path: '/rms/dept',
+                routes: [
+                  { path: '/rms/dept', redirect: '/rms/dept/list' },
+                  { path: '/rms/dept/list', component: './Rms/Dept/Dept' },
+                  { path: '/rms/dept/add', component: './Rms/Dept/DeptAdd' },
+                  { path: '/rms/dept/add/:id', component: './Rms/Dept/DeptAdd' },
+                  { path: '/rms/dept/edit/:id', component: './Rms/Dept/DeptEdit' },
+                  { path: '/rms/dept/view/:id', component: './Rms/Dept/DeptView' },
+                ],
+              },
+              {
+                path: '/rms/post',
+                routes: [
+                  { path: '/rms/post', redirect: '/rms/post/list' },
+                  { path: '/rms/post/list', component: './Rms/Post/Post' },
+                  { path: '/rms/post/add', component: './Rms/Post/PostAdd' },
+                  { path: '/rms/post/add/:id', component: './Rms/Post/PostAdd' },
+                  { path: '/rms/post/edit/:id', component: './Rms/Post/PostEdit' },
+                  { path: '/rms/post/view/:id', component: './Rms/Post/PostView' },
+                ],
+              },
+              {
+                path: '/rms/role',
+                routes: [
+                  { path: '/rms/role', redirect: '/rms/role/list' },
+                  { path: '/rms/role/list', component: './Rms/Role/Role' },
+                  { path: '/rms/role/add', component: './Rms/Role/RoleAdd' },
+                  { path: '/rms/role/add/:id', component: './Rms/Role/RoleAdd' },
+                  { path: '/rms/role/edit/:id', component: './Rms/Role/RoleEdit' },
+                  { path: '/rms/role/view/:id', component: './Rms/Role/RoleView' },
+                ],
+              },
+              {
+                path: '/rms/menu',
+                routes: [
+                  { path: '/rms/menu', redirect: '/rms/menu/list' },
+                  { path: '/rms/menu/list', component: './Rms/Menu/Menu' },
+                  { path: '/rms/menu/add', component: './Rms/Menu/MenuAdd' },
+                  { path: '/rms/menu/add/:id', component: './Rms/Menu/MenuAdd' },
+                  { path: '/rms/menu/edit/:id', component: './Rms/Menu/MenuEdit' },
+                  { path: '/rms/menu/view/:id', component: './Rms/Menu/MenuView' },
+                ],
+              },
+              {
+                path: '/rms/param',
+                routes: [
+                  { path: '/rms/param', redirect: '/rms/param/list' },
+                  { path: '/rms/param/list', component: './Rms/Param/Param' },
+                  { path: '/rms/param/add', component: './Rms/Param/ParamAdd' },
+                  { path: '/rms/param/edit/:id', component: './Rms/Param/ParamEdit' },
+                  { path: '/rms/param/view/:id', component: './Rms/Param/ParamView' },
+                ],
+              },
+              {
+                path: '/rms/tenant',
+                routes: [
+                  { path: '/rms/tenant', redirect: '/rms/tenant/list' },
+                  { path: '/rms/tenant/list', component: './Rms/Tenant/Tenant' },
+                  { path: '/rms/tenant/add', component: './Rms/Tenant/TenantAdd' },
+                  { path: '/rms/tenant/edit/:id', component: './Rms/Tenant/TenantEdit' },
+                  { path: '/rms/tenant/view/:id', component: './Rms/Tenant/TenantView' },
+                ],
+              },
+              {
+                path: '/rms/client',
+                routes: [
+                  { path: '/rms/client', redirect: '/rms/client/list' },
+                  { path: '/rms/client/list', component: './Rms/Client/Client' },
+                  { path: '/rms/client/add', component: './Rms/Client/ClientAdd' },
+                  { path: '/rms/client/edit/:id', component: './Rms/Client/ClientEdit' },
+                  { path: '/rms/client/view/:id', component: './Rms/Client/ClientView' },
+                ],
               },
             ],
           },
