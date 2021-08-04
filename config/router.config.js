@@ -399,6 +399,90 @@ export default [
           },
         ],
       },
+      //会员志愿者信息化管理平台
+      {
+        path: '/vipsystem',
+        routes: [
+          {
+            path: '/vipsystem/volunteer',
+            routes: [
+              { path: '/vipsystem/volunteer', redirect: '/vipsystem/volunteer/detail' },
+              { path: '/vipsystem/volunteer/detail', component: './Vipsystem/Volunteer/Volunteer' },
+            ],
+          },
+        ],
+      },
+      //客流统计与预警平台
+      {
+        path: '/flowinfoandwarning',
+        routes: [
+          {
+            path: '/flowinfoandwarning/datashow',
+            routes: [
+              { path: '/flowinfoandwarning/datashow', redirect: '/flowinfoandwarning/datashow/list' },
+              { path: '/flowinfoandwarning/datashow/list', component: './Flowinfoandwarning/Datashow/Datashow' },
+              { path: '/flowinfoandwarning/datashow/add', component: './Flowinfoandwarning/Datashow/DatashowAdd' },
+              { path: '/flowinfoandwarning/datashow/edit/:id', component: './Flowinfoandwarning/Datashow/DatashowEdit' },
+              { path: '/flowinfoandwarning/datashow/view/:id', component: './Flowinfoandwarning/Datashow/DatashowView' },
+            ],
+          },
+          {
+            path: '/flowinfoandwarning/staffdispatch',
+            routes: [
+              { path: '/flowinfoandwarning/staffdispatch', redirect: '/flowinfoandwarning/staffdispatch/list' },
+              { path: '/flowinfoandwarning/staffdispatch/list', component: './Flowinfoandwarning/StaffDispatch/StaffDispatch' },
+              { path: '/flowinfoandwarning/staffdispatch/add', component: './Flowinfoandwarning/StaffDispatch/StaffDispatchAdd' },
+              { path: '/flowinfoandwarning/staffdispatch/add/:id', component: './Flowinfoandwarning/StaffDispatch/StaffDispatchAdd' },
+              { path: '/flowinfoandwarning/staffdispatch/edit/:id', component: './Flowinfoandwarning/StaffDispatch/StaffDispatchEdit' },
+              { path: '/flowinfoandwarning/staffdispatch/view/:id', component: './Flowinfoandwarning/StaffDispatch/StaffDispatchView' },
+            ],
+          },
+          {
+            path: '/flowinfoandwarning/audience',
+            routes: [
+              { path: '/flowinfoandwarning/audience', redirect: '/flowinfoandwarning/audience/list' },
+              { path: '/flowinfoandwarning/audience/list', component: './Flowinfoandwarning/Audience/Audience' },
+              { path: '/flowinfoandwarning/audience/add', component: './Flowinfoandwarning/Audience/AudienceAdd' },
+              { path: '/flowinfoandwarning/audience/add/:id', component: './Flowinfoandwarning/Audience/AudienceAdd' },
+              { path: '/flowinfoandwarning/audience/edit/:id', component: './Flowinfoandwarning/Audience/AudienceEdit' },
+              { path: '/flowinfoandwarning/audience/view/:id', component: './Flowinfoandwarning/Audience/AudienceView' },
+            ],
+          },
+          {
+            path: '/flowinfoandwarning/tourroutes',
+            routes: [
+              { path: '/flowinfoandwarning/tourroutes', redirect: '/flowinfoandwarning/tourroutes/list' },
+              { path: '/flowinfoandwarning/tourroutes/list', component: './Flowinfoandwarning/Tourroutes/Tourroutes' },
+              { path: '/flowinfoandwarning/tourroutes/add', component: './Flowinfoandwarning/Tourroutes/TourroutesAdd' },
+              { path: '/flowinfoandwarning/tourroutes/add/:id', component: './Flowinfoandwarning/Tourroutes/TourroutesAdd' },
+              { path: '/flowinfoandwarning/tourroutes/edit/:id', component: './Flowinfoandwarning/Tourroutes/TourroutesEdit' },
+              { path: '/flowinfoandwarning/tourroutes/view/:id', component: './Flowinfoandwarning/Tourroutes/TourroutesView' },
+            ],
+          },
+          {
+            path: '/flowinfoandwarning/contingencyplan',
+            routes: [
+              { path: '/flowinfoandwarning/contingencyplan', redirect: '/flowinfoandwarning/contingencyplan/list' },
+              { path: '/flowinfoandwarning/contingencyplan/list', component: './Flowinfoandwarning/ContingencyPlan/ContingencyPlan' },
+              { path: '/flowinfoandwarning/contingencyplan/add', component: './Flowinfoandwarning/ContingencyPlan/ContingencyPlanAdd' },
+              { path: '/flowinfoandwarning/contingencyplan/add/:id', component: './Flowinfoandwarning/ContingencyPlan/ContingencyPlanAdd' },
+              { path: '/flowinfoandwarning/contingencyplan/edit/:id', component: './Flowinfoandwarning/ContingencyPlan/ContingencyPlanEdit' },
+              { path: '/flowinfoandwarning/contingencyplan/view/:id', component: './Flowinfoandwarning/ContingencyPlan/ContingencyPlanView' },
+            ],
+          },
+          {
+            path: '/flowinfoandwarning/commonresource',
+            routes: [
+              { path: '/flowinfoandwarning/commonresource', redirect: '/flowinfoandwarning/commonresource/list' },
+              { path: '/flowinfoandwarning/commonresource/list', component: './Flowinfoandwarning/CommonResource/CommonResource' },
+              { path: '/flowinfoandwarning/commonresource/add', component: './Flowinfoandwarning/CommonResource/CommonResourceAdd' },
+              { path: '/flowinfoandwarning/commonresource/add/:id', component: './Flowinfoandwarning/CommonResource/CommonResourceAdd' },
+              { path: '/flowinfoandwarning/commonresource/edit/:id', component: './Flowinfoandwarning/CommonResource/CommonResourceEdit' },
+              { path: '/flowinfoandwarning/commonresource/view/:id', component: './Flowinfoandwarning/CommonResource/CommonResourceView' },
+            ],
+          },
+        ],
+      },
       {
         component: '404',
       },

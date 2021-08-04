@@ -1,17 +1,17 @@
 import React, { Fragment, PureComponent } from 'react';
 import { connect } from 'dva';
 import { Button, Col, Divider, Form, Input, message, Modal, Row, Tag } from 'antd';
-import Panel from '../../components/Panel';
-import { REPORT_LIST } from '../../actions/report';
-import Grid from '../../components/Sword/Grid';
-import { reportUrl } from '../../defaultSettings';
-import { remove } from '../../services/report';
+import Panel from '../../../components/Panel';
+import { VOLUNTEER_LIST } from '../../../actions/volunteer';
+import Grid from '../../../components/Sword/Grid';
+import { reportUrl } from '../../../defaultSettings';
+import { remove } from '../../../services/volunteer';
 
 const FormItem = Form.Item;
 
-@connect(({ report, loading }) => ({
-  report,
-  loading: loading.models.report,
+@connect(({ volunteer, loading }) => ({
+  volunteer,
+  loading: loading.models.volunteer,
 }))
 @Form.create()
 class Volunteer extends PureComponent {
@@ -23,7 +23,7 @@ class Volunteer extends PureComponent {
   handleSearch = params => {
     const { dispatch } = this.props;
     this.setState({ params });
-    dispatch(REPORT_LIST(params));
+    dispatch(VOLUNTEER_LIST(params));
   };
 
   handleRemove = id => {
@@ -112,12 +112,12 @@ class Volunteer extends PureComponent {
   );
 
   render() {
-    const code = 'report';
+    const code = 'volunteer';
 
     const {
       form,
       loading,
-      report: { data },
+      volunteer: { data },
     } = this.props;
 
     const columns = [
