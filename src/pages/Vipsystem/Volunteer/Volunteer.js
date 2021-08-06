@@ -120,25 +120,43 @@ class Volunteer extends PureComponent {
       volunteer: { data },
     } = this.props;
 
+    
     const columns = [
       {
-        title: '文件名',
-        dataIndex: 'name',
-        render: name => (
-          <span>
-            <Tag color="geekblue" key={name}>
-              v{name}
-            </Tag>
-          </span>
-        ),
+        title: '用户身份名称',
+        dataIndex: 'type_name',
+      },
+      {
+        title: '博物馆名称',
+        dataIndex: 'museum_name',
+      },
+      {
+        title: '用户名',
+        dataIndex: 'username',
+      },
+      {
+        title: '密码',
+        dataIndex: 'password',
+      },
+      {
+        title: '创建人名称',
+        dataIndex: 'create_name',
       },
       {
         title: '创建时间',
-        dataIndex: 'createTime',
+        dataIndex: 'create_time',
       },
       {
-        title: '更新时间',
-        dataIndex: 'updateTime',
+        title: '修改人名称',
+        dataIndex: 'update_name',
+      },
+      {
+        title: '审核状态',
+        dataIndex: 'audit_state',
+      },
+      {
+        title: '审核人名称',
+        dataIndex: 'audit_name',
       },
     ];
 

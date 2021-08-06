@@ -111,5 +111,5 @@ const getNotices = (req, res) => {
 };
 
 export default {
-  'GET /api/blade-desk/notice/my-notices': getNotices,
+  'GET /api/blade-museum/mus/my-notices': getNotices,
 };

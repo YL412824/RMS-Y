@@ -30,6 +30,7 @@ class Notice extends PureComponent {
 
     const payload = {
       ...params,
+	  pages:1,
       begin_date: dateRange ? func.format(dateRange[0], 'YYYY-MM-DD') : null,
       end_date: dateRange ? func.format(dateRange[1], 'YYYY-MM-DD') : null,
     };

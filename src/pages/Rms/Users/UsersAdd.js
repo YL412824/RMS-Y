@@ -1,56 +1,45 @@
 import React, { PureComponent } from 'react';
-import { Form, Input, Card, Row, Col, Button, TreeSelect, DatePicker, Select } from 'antd';
-import moment from 'moment';
+import { Form, Input, Card, Row, Col, Button, TreeSelect, Select, DatePicker, message } from 'antd';
 import { connect } from 'dva';
+import moment from 'moment';
 import Panel from '../../../components/Panel';
-import func from '../../../utils/Func';
 import styles from '../../../layouts/Sword.less';
-import { USER_CHANGE_INIT, USER_DETAIL, USER_UPDATE } from '../../../actions/user';
+import { USERS_INIT, USERS_CHANGE_INIT, USERS_SUBMIT } from '../../../actions/users';
+import func from '../../../utils/Func';
 import { tenantMode } from '../../../defaultSettings';
 
 const FormItem = Form.Item;
 
-@connect(({ user, loading }) => ({
-  user,
-  submitting: loading.effects['user/submit'],
+@connect(({ users, loading }) => ({
+  users,
+  submitting: loading.effects['users/submit'],
 }))
 @Form.create()
-class UserEdit extends PureComponent {
+class UsersAdd extends PureComponent {
   componentWillMount() {
-    const {
-      dispatch,
-      match: {
-        params: { id },
-      },
-    } = this.props;
-    dispatch(USER_DETAIL(id)).then(() => {
-      const {
-        user: { detail },
-      } = this.props;
-      dispatch(USER_CHANGE_INIT({ tenantId: detail.tenantId }));
-    });
+    const { dispatch } = this.props;
+    dispatch(USERS_INIT());
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    const {
-      dispatch,
-      match: {
-        params: { id },
-      },
-      form,
-    } = this.props;
+    const { dispatch, form } = this.props;
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        const params = {
-          id,
-          ...values,
-          roleId: func.join(values.roleId),
-          deptId: func.join(values.deptId),
-          postId: func.join(values.postId),
-          birthday: func.format(values.birthday),
-        };
-        dispatch(USER_UPDATE(params));
+        const password = form.getFieldValue('password');
+        const password2 = form.getFieldValue('password2');
+        if (password !== password2) {
+          message.warning('两次密码输入不一致');
+        } else {
+          const params = {
+            ...values,
+            roleId: func.join(values.roleId),
+            deptId: func.join(values.deptId),
+            postId: func.join(values.postId),
+            birthday: func.format(values.birthday),
+          };
+          dispatch(USERS_SUBMIT(params));
+        }
       }
     });
   };
@@ -58,14 +47,13 @@ class UserEdit extends PureComponent {
   handleChange = value => {
     const { dispatch, form } = this.props;
     form.resetFields(['roleId', 'deptId', 'postId']);
-    dispatch(USER_CHANGE_INIT({ tenantId: value }));
+    dispatch(USERS_CHANGE_INIT({ tenantId: value }));
   };
 
   render() {
     const {
       form: { getFieldDecorator },
-      user: {
-        detail,
+      users: {
         init: { roleTree, deptTree, postList, tenantList },
       },
       submitting,
@@ -96,7 +84,7 @@ class UserEdit extends PureComponent {
     );
 
     return (
-      <Panel title="修改" back="/system/user" action={action}>
+      <Panel title="新增" back="/system/users" action={action}>
         <Form hideRequiredMark style={{ marginTop: 8 }}>
           <Card title="基本信息" className={styles.card} bordered={false}>
             <Row gutter={24}>
@@ -109,7 +97,6 @@ class UserEdit extends PureComponent {
                         message: '请输入登录账号',
                       },
                     ],
-                    initialValue: detail.account,
                   })(<Input placeholder="请输入登录账号" />)}
                 </FormItem>
               </Col>
@@ -125,7 +112,6 @@ class UserEdit extends PureComponent {
                           message: '请选择所属租户',
                         },
                       ],
-                      initialValue: detail.tenantId,
                     })(
                       <Select
                         showSearch
@@ -149,6 +135,32 @@ class UserEdit extends PureComponent {
             ) : null}
             <Row gutter={24}>
               <Col span={10}>
+                <FormItem {...formItemLayout} label="密码">
+                  {getFieldDecorator('password', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请输入密码',
+                      },
+                    ],
+                  })(<Input type="password" placeholder="请输入密码" />)}
+                </FormItem>
+              </Col>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="确认密码">
+                  {getFieldDecorator('password2', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请输入确认密码',
+                      },
+                    ],
+                  })(<Input type="password" placeholder="请输入确认密码" />)}
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={10}>
                 <FormItem {...formItemLayout} label="用户昵称">
                   {getFieldDecorator('name', {
                     rules: [
@@ -157,7 +169,6 @@ class UserEdit extends PureComponent {
                         message: '请输入用户昵称',
                       },
                     ],
-                    initialValue: detail.name,
                   })(<Input placeholder="请输入用户昵称" />)}
                 </FormItem>
               </Col>
@@ -170,7 +181,6 @@ class UserEdit extends PureComponent {
                         message: '请输入用户姓名',
                       },
                     ],
-                    initialValue: detail.realName,
                   })(<Input placeholder="请输入用户姓名" />)}
                 </FormItem>
               </Col>
@@ -185,7 +195,6 @@ class UserEdit extends PureComponent {
                         message: '请选择所属角色',
                       },
                     ],
-                    initialValue: func.split(detail.roleId),
                   })(
                     <TreeSelect
                       dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
@@ -208,7 +217,6 @@ class UserEdit extends PureComponent {
                         message: '请选择所属部门',
                       },
                     ],
-                    initialValue: func.split(detail.deptId),
                   })(
                     <TreeSelect
                       dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
@@ -226,9 +234,7 @@ class UserEdit extends PureComponent {
             <Row gutter={24}>
               <Col span={10}>
                 <FormItem {...formItemLayout} label="用户编号">
-                  {getFieldDecorator('code', {
-                    initialValue: detail.code,
-                  })(<Input placeholder="请输入用户编号" />)}
+                  {getFieldDecorator('code', {})(<Input placeholder="请输入用户编号" />)}
                 </FormItem>
               </Col>
               <Col span={10}>
@@ -240,7 +246,6 @@ class UserEdit extends PureComponent {
                         message: '请选择所属岗位',
                       },
                     ],
-                    initialValue: func.split(detail.postId),
                   })(
                     <Select
                       mode="multiple"
@@ -264,25 +269,19 @@ class UserEdit extends PureComponent {
             <Row gutter={24}>
               <Col span={10}>
                 <FormItem {...formItemLayout} label="手机号码">
-                  {getFieldDecorator('phone', {
-                    initialValue: detail.phone,
-                  })(<Input placeholder="请输入手机号码" />)}
+                  {getFieldDecorator('phone')(<Input placeholder="请输入手机号码" />)}
                 </FormItem>
               </Col>
               <Col span={10}>
                 <FormItem {...formItemLayout} label="电子邮箱">
-                  {getFieldDecorator('email', {
-                    initialValue: detail.email,
-                  })(<Input placeholder="请输入电子邮箱" />)}
+                  {getFieldDecorator('email')(<Input placeholder="请输入电子邮箱" />)}
                 </FormItem>
               </Col>
             </Row>
             <Row gutter={24}>
               <Col span={10}>
                 <FormItem {...formItemLayout} label="用户性别">
-                  {getFieldDecorator('sex', {
-                    initialValue: detail.sex,
-                  })(
+                  {getFieldDecorator('sex')(
                     <Select placeholder="请选择用户性别">
                       <Select.Option key={1} value={1}>
                         男
@@ -299,9 +298,7 @@ class UserEdit extends PureComponent {
               </Col>
               <Col span={10}>
                 <FormItem {...formItemLayout} label="用户生日">
-                  {getFieldDecorator('birthday', {
-                    initialValue: func.moment(detail.birthday),
-                  })(
+                  {getFieldDecorator('birthday')(
                     <DatePicker
                       style={{ width: '100%' }}
                       format="YYYY-MM-DD HH:mm:ss"
@@ -319,4 +316,4 @@ class UserEdit extends PureComponent {
   }
 }
 
-export default UserEdit;
+export default UsersAdd;

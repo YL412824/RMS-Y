@@ -327,7 +327,7 @@ function getFakeCaptcha(req, res) {
 }
 
 export default {
-  'GET /api/blade-desk/notice/notices': getNotice,
+  'GET /api/blade-museum/mus/notices': getNotice,
   'GET /api/blade-desk/dashboard/activities': getActivities,
   'POST /api/forms': (req, res) => {
     res.send({ message: 'Ok' });

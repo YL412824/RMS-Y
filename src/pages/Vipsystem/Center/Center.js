@@ -3,8 +3,8 @@ import { connect } from 'dva';
 import { Upload, Icon, Button, Col, Form, Input, message, Modal, Row, Tree } from 'antd';
 import Panel from '../../../components/Panel';
 import Grid from '../../../components/Sword/Grid';
-import { USER_INIT, USER_LIST, USER_ROLE_GRANT } from '../../../actions/user';
-import { resetPassword } from '../../../services/user';
+import { CENTER_INIT, CENTER_LIST, CENTER_ROLE_GRANT } from '../../../actions/center';
+import { resetPassword } from '../../../services/center';
 import { tenantMode } from '../../../defaultSettings';
 import { getAccessToken, getToken } from '../../../utils/authority';
 
@@ -12,12 +12,12 @@ const FormItem = Form.Item;
 const { TreeNode } = Tree;
 const { Dragger } = Upload;
 
-@connect(({ user, loading }) => ({
-  user,
-  loading: loading.models.user,
+@connect(({ center, loading }) => ({
+  center,
+  loading: loading.models.center,
 }))
 @Form.create()
-class User extends PureComponent {
+class Center extends PureComponent {
   state = {
     visible: false,
     excelVisible: false,
@@ -30,7 +30,7 @@ class User extends PureComponent {
 
   componentWillMount() {
     const { dispatch } = this.props;
-    dispatch(USER_INIT());
+    dispatch(CENTER_INIT());
   }
 
   onSelectRow = rows => {
@@ -48,13 +48,13 @@ class User extends PureComponent {
   handleSearch = params => {
     this.setState({ params });
     const { dispatch } = this.props;
-    dispatch(USER_LIST(params));
+    dispatch(CENTER_LIST(params));
   };
 
   // ============ 处理按钮点击回调事件 ===============
   handleBtnCallBack = payload => {
     const { btn, keys } = payload;
-    if (btn.code === 'user_role') {
+    if (btn.code === 'center_role') {
       if (keys.length === 0) {
         message.warn('请先选择一条数据!');
         return;
@@ -62,7 +62,7 @@ class User extends PureComponent {
       this.showModal();
       return;
     }
-    if (btn.code === 'user_reset') {
+    if (btn.code === 'center_reset') {
       if (keys.length === 0) {
         message.warn('请先选择一条数据!');
         return;
@@ -74,7 +74,7 @@ class User extends PureComponent {
         okType: 'danger',
         cancelText: '取消',
         async onOk() {
-          const response = await resetPassword({ userIds: keys });
+          const response = await resetPassword({ centerIds: keys });
           if (response.success) {
             message.success(response.msg);
           } else {
@@ -96,7 +96,7 @@ class User extends PureComponent {
 
     const { dispatch } = this.props;
     dispatch(
-      USER_ROLE_GRANT({ userIds: keys, roleIds: checkedTreeKeys.checked }, () => {
+      CENTER_ROLE_GRANT({ centerIds: keys, roleIds: checkedTreeKeys.checked }, () => {
         this.setState({
           visible: false,
           confirmLoading: false,
@@ -202,7 +202,7 @@ class User extends PureComponent {
         const account = params.account || '';
         const realName = params.realName || '';
         window.open(
-          `/api/blade-user/export-user?blade-auth=${getAccessToken()}&account=${account}&realName=${realName}`
+          `/api/blade-center/export-center?blade-auth=${getAccessToken()}&account=${account}&realName=${realName}`
         );
       },
       onCancel() {},
@@ -210,7 +210,7 @@ class User extends PureComponent {
   };
 
   handleTemplate = () => {
-    window.open(`/api/blade-user/export-template?blade-auth=${getAccessToken()}`);
+    window.open(`/api/blade-center/export-template?blade-auth=${getAccessToken()}`);
   };
 
   onUpload = info => {
@@ -239,14 +239,14 @@ class User extends PureComponent {
   );
 
   render() {
-    const code = 'user';
+    const code = 'center';
 
     const { visible, excelVisible, confirmLoading, checkedTreeKeys } = this.state;
 
     const {
       form,
       loading,
-      user: {
+      center: {
         data,
         init: { roleTree },
       },
@@ -257,7 +257,7 @@ class User extends PureComponent {
       headers: {
         'Blade-Auth': getToken(),
       },
-      action: '/api/blade-user/import-user',
+      action: '/api/blade-center/import-center',
     };
 
     const formItemLayout = {
@@ -370,4 +370,4 @@ class User extends PureComponent {
     );
   }
 }
-export default User;
+export default Center;

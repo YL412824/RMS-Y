@@ -109,20 +109,40 @@ class Activity extends PureComponent {
 
     const columns = [
       {
+        title: formatMessage({ id: 'desk.activity.type_name' }),
+        dataIndex: 'type_name',
+      },
+      {
+        title: formatMessage({ id: 'desk.activity.location' }),
+        dataIndex: 'location',
+      },
+      {
+        title: formatMessage({ id: 'desk.activity.num' }),
+        dataIndex: 'num',
+      },
+      {
         title: formatMessage({ id: 'desk.activity.title' }),
         dataIndex: 'title',
       },
       {
-        title: formatMessage({ id: 'desk.activity.category' }),
-        dataIndex: 'categoryName',
+        title: formatMessage({ id: 'desk.activity.museum_name' }),
+        dataIndex: 'museum_name',
       },
       {
-        title: formatMessage({ id: 'desk.activity.content' }),
-        dataIndex: 'content',
+        title: formatMessage({ id: 'desk.activity.start_time' }),
+        dataIndex: 'start_time',
       },
       {
-        title: formatMessage({ id: 'desk.activity.date' }),
-        dataIndex: 'releaseTime',
+        title: formatMessage({ id: 'desk.activity.end_time' }),
+        dataIndex: 'end_time',
+      },
+      {
+        title: formatMessage({ id: 'desk.activity.link_name' }),
+        dataIndex: 'link_name',
+      },
+      {
+        title: formatMessage({ id: 'desk.activity.link_phone' }),
+        dataIndex: 'link_phone',
       },
     ];
 

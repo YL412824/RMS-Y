@@ -108,7 +108,7 @@ export async function fakeRegister(params) {
 }
 
 export async function queryNotices() {
-  return request('/api/blade-desk/notice/my-notices');
+  return request('/api/blade-museum/mus/my-notices');
 }
 
 export async function queryMuseums() {

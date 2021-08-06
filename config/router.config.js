@@ -301,13 +301,13 @@ export default [
             path: '/rms',
             routes: [
               {
-                path: '/rms/user',
+                path: '/rms/users',
                 routes: [
-                  { path: '/rms/user', redirect: '/rms/user/list' },
-                  { path: '/rms/user/list', component: './Rms/User/User' },
-                  { path: '/rms/user/add', component: './Rms/User/UserAdd' },
-                  { path: '/rms/user/edit/:id', component: './Rms/User/UserEdit' },
-                  { path: '/rms/user/view/:id', component: './Rms/User/UserView' },
+                  { path: '/rms/users', redirect: '/rms/users/list' },
+                  { path: '/rms/users/list', component: './Rms/Users/Users' },
+                  { path: '/rms/users/add', component: './Rms/Users/UsersAdd' },
+                  { path: '/rms/users/edit/:id', component: './Rms/Users/UsersEdit' },
+                  { path: '/rms/users/view/:id', component: './Rms/Users/UsersView' },
                 ],
               },
               {
@@ -408,6 +408,26 @@ export default [
             routes: [
               { path: '/vipsystem/volunteer', redirect: '/vipsystem/volunteer/detail' },
               { path: '/vipsystem/volunteer/detail', component: './Vipsystem/Volunteer/Volunteer' },
+            ],
+          },
+          {
+            path: '/vipsystem/vipcenter',
+            routes: [
+              { path: '/vipsystem/vipcenter', redirect: '/vipsystem/vipcenter/list' },
+              { path: '/vipsystem/vipcenter/list', component: './Vipsystem/Vipcenter/Vipcenter' },
+              { path: '/vipsystem/vipcenter/add', component: './Vipsystem/Vipcenter/VipcenterAdd' },
+              { path: '/vipsystem/vipcenter/edit/:id', component: './Vipsystem/Vipcenter/VipcenterEdit' },
+              { path: '/vipsystem/vipcenter/view/:id', component: './Vipsystem/Vipcenter/VipcenterView' },
+            ],
+          },
+          {
+            path: '/vipsystem/center',
+            routes: [
+              { path: '/vipsystem/client', redirect: '/vipsystem/center/list' },
+              { path: '/vipsystem/client/list', component: './Vipsystem/Center/Center' },
+              { path: '/vipsystem/client/add', component: './Vipsystem/Center/CenterAdd' },
+              { path: '/vipsystem/client/edit/:id', component: './Vipsystem/Center/CenterEdit' },
+              { path: '/vipsystem/client/view/:id', component: './Vipsystem/Center/CenterView' },
             ],
           },
         ],

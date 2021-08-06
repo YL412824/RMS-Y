@@ -3,17 +3,17 @@ import { Form, Card, Button, Row, Col } from 'antd';
 import router from 'umi/router';
 import { connect } from 'dva';
 import Panel from '../../../components/Panel';
-import { USER_DETAIL } from '../../../actions/user';
+import { USERS_DETAIL } from '../../../actions/users';
 import styles from '../../../layouts/Sword.less';
 import { tenantMode } from '../../../defaultSettings';
 
 const FormItem = Form.Item;
 
-@connect(({ user }) => ({
-  user,
+@connect(({ users }) => ({
+  users,
 }))
 @Form.create()
-class UserView extends PureComponent {
+class UsersView extends PureComponent {
   componentWillMount() {
     const {
       dispatch,
@@ -21,7 +21,7 @@ class UserView extends PureComponent {
         params: { id },
       },
     } = this.props;
-    dispatch(USER_DETAIL(id));
+    dispatch(USERS_DETAIL(id));
   }
 
   handleEdit = () => {
@@ -30,12 +30,12 @@ class UserView extends PureComponent {
         params: { id },
       },
     } = this.props;
-    router.push(`/system/user/edit/${id}`);
+    router.push(`/system/users/edit/${id}`);
   };
 
   render() {
     const {
-      user: { detail },
+      users: { detail },
     } = this.props;
 
     const formItemLayout = {
@@ -63,7 +63,7 @@ class UserView extends PureComponent {
     );
 
     return (
-      <Panel title="查看" back="/system/user" action={action}>
+      <Panel title="查看" back="/system/users" action={action}>
         <Form hideRequiredMark style={{ marginTop: 8 }}>
           <Card title="基本信息" className={styles.card} bordered={false}>
             <Row gutter={24}>
@@ -149,4 +149,4 @@ class UserView extends PureComponent {
   }
 }
 
-export default UserView;
+export default UsersView;

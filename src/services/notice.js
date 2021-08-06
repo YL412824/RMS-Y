@@ -5,27 +5,33 @@ import request from '../utils/request';
 // =====================通知公告===========================
 
 export async function queryProjectNotice(params = {}) {
-  return request(`/api/blade-desk/notice/notices?${stringify(params)}`);
+  return request(`/api/blade-museum/mus/add?${stringify(params)}`);
 }
+
+// export async function list(params) {
+//   return request(`/api/blade-museum/mus/list?${stringify(params)}`);
+// }
 
 export async function list(params) {
-  return request(`/api/blade-desk/notice/list?${stringify(params)}`);
+  return request('/api/blade-museum/mus/list', {
+    method: 'POST',
+    body: func.toFormData(params),
+  });
 }
-
 export async function remove(params) {
-  return request('/api/blade-desk/notice/remove', {
+  return request('/api/blade-museum/mus/remove', {
     method: 'POST',
     body: func.toFormData(params),
   });
 }
 
 export async function submit(params) {
-  return request('/api/blade-desk/notice/submit', {
+  return request('/api/blade-museum/mus/insert', {
     method: 'POST',
     body: params,
   });
 }
 
 export async function detail(params) {
-  return request(`/api/blade-desk/notice/detail?${stringify(params)}`);
+  return request(`/api/blade-museum/mus/detail?${stringify(params)}`);
 }
