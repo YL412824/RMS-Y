@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Form, Input, Icon, Card, Select, Button, DatePicker, Upload, message, Tree } from 'antd';
+import { Form, Input, Icon, Card, Select, Button, DatePicker, Upload, message, Tree, TreeSelect, } from 'antd';
 import { formatMessage, FormattedMessage } from 'umi/locale';
 import { connect } from 'dva';
 import moment from 'moment';
@@ -43,8 +43,13 @@ class NoticeAdd extends PureComponent {
     this.setState({
       excelVisible: false,
       onReset: () => {},
+      value: '',
     });
 
+  onChange = value => {
+    console.log(value);
+    this.setState({ value });
+  };
   onClickReset = () => {
     const { onReset } = this.state;
     onReset();
@@ -67,7 +72,6 @@ class NoticeAdd extends PureComponent {
   disabledDate = current =>
     // Can not select days before today
     current && current < moment().endOf('day');
-
   render() {
     const {
       form: { getFieldDecorator },
@@ -126,57 +130,26 @@ class NoticeAdd extends PureComponent {
                     message: formatMessage({ id: 'desk.notice.title.validation' }),
                   },
                 ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.province_code" />}>
-              {getFieldDecorator('province_code', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'desk.notice.title.validation' }),
-                  },
-                ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.city_name" />}>
-              {getFieldDecorator('city_name', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'desk.notice.title.validation' }),
-                  },
-                ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.city_code" />}>
-              {getFieldDecorator('city_code', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'desk.notice.title.validation' }),
-                  },
-                ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.county_name" />}>
-              {getFieldDecorator('county_name', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'desk.notice.title.validation' }),
-                  },
-                ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.county_code" />}>
-              {getFieldDecorator('county_code', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'desk.notice.title.validation' }),
-                  },
-                ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+              })(<TreeSelect
+                    showSearch
+                    style={{ width: '100%' }}
+                    value=''
+                    dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                    placeholder="Please select"
+                    allowClear
+                    treeDefaultExpandAll
+                    onChange={this.onChange}
+                  >
+                        <TreeNode value="parent 1" title="parent 1" key="0-1">
+                        <TreeNode value="parent 1-0" title="parent 1-0" key="0-1-1">
+                          <TreeNode value="leaf1" title="my leaf" key="random" />
+                          <TreeNode value="leaf2" title="your leaf" key="random1" />
+                        </TreeNode>
+                        <TreeNode value="parent 1-1" title="parent 1-1" key="random2">
+                        <TreeNode value="sss" title={<b style={{ color: '#08c' }}>sss</b>} key="random3" />
+                        </TreeNode>
+                        </TreeNode>
+                  </TreeSelect>)}
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.location" />}>
               {getFieldDecorator('location', {

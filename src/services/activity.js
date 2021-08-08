@@ -9,7 +9,10 @@ export async function queryProjectNotice(params = {}) {
 }
 
 export async function list(params) {
-  return request(`/api/blade-museum/act/list?${stringify(params)}`);
+  return request('/api/blade-museum/act/list',{
+      method: 'POST',
+      body: func.toFormData(params),
+  });
 }
 
 export async function remove(params) {
