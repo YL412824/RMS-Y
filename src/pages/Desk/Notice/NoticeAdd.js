@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Form, Input, Icon, Card, Select, Button, DatePicker, Upload, Tree } from 'antd';
+import { Form, Input, Icon, Card, Select, Button, DatePicker, Upload, message, Tree } from 'antd';
 import { formatMessage, FormattedMessage } from 'umi/locale';
 import { connect } from 'dva';
 import moment from 'moment';
@@ -39,6 +39,16 @@ class NoticeAdd extends PureComponent {
     });
   };
 
+  handleExcelCancel = () =>
+    this.setState({
+      excelVisible: false,
+      onReset: () => {},
+    });
+
+  onClickReset = () => {
+    const { onReset } = this.state;
+    onReset();
+  };
 
   onUpload = info => {
     const { status } = info.file;
@@ -46,11 +56,12 @@ class NoticeAdd extends PureComponent {
       window.console.log(info.file, info.fileList);
     }
     if (status === 'done') {
+      console.log(message);
       message.success(`${info.file.name} 数据导入成功!`);
       this.handleExcelCancel();
       this.onClickReset();
     } else if (status === 'error') {
-      message.error(`${info.file.response.msg}`);
+      message.error(`${info.file.response}`);
     }
   };
   disabledDate = current =>
@@ -71,7 +82,8 @@ class NoticeAdd extends PureComponent {
       headers: {
         'Blade-Auth': getToken(),
       },
-      action: '/api/blade-contingencyplan/import-contingencyplan',
+      // action: '/api/blade-contingencyplan/import-contingencyplan',
+      action: 'http://106.14.40.94:8088/upload/upload',
     };
 
     const formItemLayout = {
@@ -209,7 +221,7 @@ class NoticeAdd extends PureComponent {
                   <Icon type="inbox" />
                 </p>
                 <p className="ant-upload-text">将文件拖到此处，或点击上传</p>
-                <p className="ant-upload-hint">请上传 .xls,.xlsx 格式的文件</p>
+                <p className="ant-upload-hint">请上传 .png,.jpg 格式的文件</p>
               </Dragger>)}
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.logo_high" />}>
@@ -220,7 +232,13 @@ class NoticeAdd extends PureComponent {
                     message: formatMessage({ id: 'desk.notice.title.validation' }),
                   },
                 ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+              })(<Dragger {...uploadProps} onChange={this.onUpload}>
+                <p className="ant-upload-drag-icon">
+                  <Icon type="inbox" />
+                </p>
+                <p className="ant-upload-text">将文件拖到此处，或点击上传</p>
+                <p className="ant-upload-hint">请上传 .png,.jpg 格式的文件</p>
+              </Dragger>)}
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.imgs" />}>
               {getFieldDecorator('imgs', {
@@ -230,7 +248,13 @@ class NoticeAdd extends PureComponent {
                     message: formatMessage({ id: 'desk.notice.title.validation' }),
                   },
                 ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+              })(<Dragger {...uploadProps} onChange={this.onUpload}>
+                <p className="ant-upload-drag-icon">
+                  <Icon type="inbox" />
+                </p>
+                <p className="ant-upload-text">将文件拖到此处，或点击上传</p>
+                <p className="ant-upload-hint">请上传 .png,.jpg 格式的文件</p>
+              </Dragger>)}
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.username" />}>
               {getFieldDecorator('username', {
