@@ -29,12 +29,12 @@ class Notice extends PureComponent {
     const { dateRange } = params;
     console.log(params);
     const payload = {
-      // ...params,
+      ...params,
 	  pages:1,
     size: 10,
-    name:"",
-    typecode:"",
-    typename:"",
+    // name:"",
+    // typecode:"",
+    // typename:"",
       // begin_date: dateRange ? func.format(dateRange[0], 'YYYY-MM-DD') : null,
       // end_date: dateRange ? func.format(dateRange[1], 'YYYY-MM-DD') : null,
     };
@@ -62,9 +62,9 @@ class Notice extends PureComponent {
       <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
 
         <Col md={6} sm={24}>
-          <FormItem label={<FormattedMessage id="desk.notice.museum_name" />}>
+          <FormItem label={<FormattedMessage id="desk.notice.name" />}>
             {getFieldDecorator('musName')(
-              <Input placeholder={formatMessage({ id: 'desk.notice.museum_name.placeholder' })} />
+              <Input placeholder={formatMessage({ id: 'desk.notice.name.placeholder' })} />
             )}
           </FormItem>
         </Col>

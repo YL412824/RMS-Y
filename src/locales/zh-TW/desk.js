@@ -15,6 +15,7 @@ export default {
   'desk.notice.content.validation': '請輸入通知內容',
   //
   'desk.notice.name': '博物馆名称',
+  'desk.notice.name.placeholder': '请输入博物馆名称',
   'desk.notice.province_name': '省份名称',
   'desk.notice.province_code': '省份编码',
   'desk.notice.city_name': '市名称',
