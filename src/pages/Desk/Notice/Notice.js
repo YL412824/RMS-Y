@@ -27,15 +27,22 @@ class Notice extends PureComponent {
     const { dispatch } = this.props;
 
     const { dateRange } = params;
-
+    console.log(params);
     const payload = {
-      ...params,
+      // ...params,
 	  pages:1,
-      begin_date: dateRange ? func.format(dateRange[0], 'YYYY-MM-DD') : null,
-      end_date: dateRange ? func.format(dateRange[1], 'YYYY-MM-DD') : null,
+    size: 10,
+    name:"",
+    typecode:"",
+    typename:"",
+      // begin_date: dateRange ? func.format(dateRange[0], 'YYYY-MM-DD') : null,
+      // end_date: dateRange ? func.format(dateRange[1], 'YYYY-MM-DD') : null,
     };
 
-    payload.dateRange = null;
+    delete payload.dateRange;
+    delete payload.begin_date;
+    delete payload.end_date;
+    console.log(payload);
 
     dispatch(NOTICE_LIST(payload));
   };
@@ -45,7 +52,8 @@ class Notice extends PureComponent {
     const {
       form,
       notice: {
-        init: { category },
+        init: {  },
+        // init: { category },
       },
     } = this.props;
     const { getFieldDecorator } = form;
@@ -55,8 +63,8 @@ class Notice extends PureComponent {
 
         <Col md={6} sm={24}>
           <FormItem label={<FormattedMessage id="desk.notice.museum_name" />}>
-            {getFieldDecorator('title')(
-              <Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />
+            {getFieldDecorator('musName')(
+              <Input placeholder={formatMessage({ id: 'desk.notice.museum_name.placeholder' })} />
             )}
           </FormItem>
         </Col>
@@ -99,44 +107,56 @@ class Notice extends PureComponent {
     const columns = [
       {
         title: formatMessage({ id: 'desk.notice.museum_name' }),
-        dataIndex: 'museum_name',
+        dataIndex: 'musName',
       },
       {
-        title: formatMessage({ id: 'desk.notice.link_name' }),
-        dataIndex: 'link_name',
+        title: formatMessage({ id: 'desk.notice.province_name' }),
+        dataIndex: 'provinceName',
       },
       {
-        title: formatMessage({ id: 'desk.notice.link_phone' }),
-        dataIndex: 'link_phone',
+        title: formatMessage({ id: 'desk.notice.city_name' }),
+        dataIndex: 'cityName',
       },
+      {
+        title: formatMessage({ id: 'desk.notice.county_name' }),
+        dataIndex: 'countyName',
+      },
+      // {
+      //   title: formatMessage({ id: 'desk.notice.link_name' }),
+      //   dataIndex: 'linkName',
+      // },
+      // {
+      //   title: formatMessage({ id: 'desk.notice.link_phone' }),
+      //   dataIndex: 'linkPhone',
+      // },
       {
         title: formatMessage({ id: 'desk.notice.location' }),
         dataIndex: 'location',
       },
-      {
-        title: formatMessage({ id: 'desk.notice.num' }),
-        dataIndex: 'num',
-      },
-      {
-        title: formatMessage({ id: 'desk.notice.lines' }),
-        dataIndex: 'lines',
-      },
+      // {
+      //   title: formatMessage({ id: 'desk.notice.num' }),
+      //   dataIndex: 'num',
+      // },
+      // {
+      //   title: formatMessage({ id: 'desk.notice.lines' }),
+      //   dataIndex: 'lines',
+      // },
       {
         title: formatMessage({ id: 'desk.notice.audit_state' }),
-        dataIndex: 'audit_state',
+        dataIndex: 'auditState',
       },
       {
         title: formatMessage({ id: 'desk.notice.audit_name' }),
-        dataIndex: 'audit_name',
+        dataIndex: 'auditName',
       },
       {
         title: formatMessage({ id: 'desk.notice.create_name' }),
-        dataIndex: 'create_name',
+        dataIndex: 'userName',
       },
-      {
-        title: formatMessage({ id: 'desk.notice.create_time' }),
-        dataIndex: 'create_time',
-      },
+      // {
+      //   title: formatMessage({ id: 'desk.notice.create_time' }),
+      //   dataIndex: 'createTime',
+      // },
     ];
 
     return (

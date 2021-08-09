@@ -24,6 +24,7 @@ export function NOTICE_DETAIL(id) {
 export function NOTICE_SUBMIT(payload) {
   return {
     type: `${NOTICE_NAMESPACE}/submit`,
+    // type: `${NOTICE_NAMESPACE}/insert`,
     payload,
   };
 }

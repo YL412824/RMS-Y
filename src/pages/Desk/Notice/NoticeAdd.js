@@ -1,18 +1,18 @@
 import React, { PureComponent } from 'react';
-import { Form, Input, Icon, Card, Select, Button, DatePicker, Upload, message, Tree, TreeSelect, } from 'antd';
+import { Form, Input, Icon, List, Card, Select, Button, DatePicker, Upload, message, Tree, Cascader, } from 'antd';
 import { formatMessage, FormattedMessage } from 'umi/locale';
 import { connect } from 'dva';
+// import { cityArray } from './cityData';
 import moment from 'moment';
 import Panel from '../../../components/Panel';
 import { NOTICE_INIT, NOTICE_SUBMIT } from '../../../actions/notice';
 import func from '../../../utils/Func';
 import { getAccessToken, getToken } from '../../../utils/authority';
-
+import  cityArray  from "./cities";
 const FormItem = Form.Item;
 const { TextArea } = Input;
 const { TreeNode } = Tree;
 const { Dragger } = Upload;
-
 @connect(({ notice, loading }) => ({
   notice,
   submitting: loading.effects['notice/submit'],
@@ -23,13 +23,33 @@ class NoticeAdd extends PureComponent {
     const { dispatch } = this.props;
     dispatch(NOTICE_INIT());
   }
-
+  // onChange = value => console.log(value)
   handleSubmit = e => {
     e.preventDefault();
     const { dispatch, form } = this.props;
     form.validateFieldsAndScroll((err, values) => {
+      let that = this;
       if (err) return;
-
+      var imgarr = [];
+      if(values.imgs.fileList.length>0){
+        for(var i=0;i<values.imgs.fileList.length;i++){
+          imgarr.push(values.imgs.fileList[i].response.res.path)
+          // values.imgs.push(values.imgs.fileList[i].response.res.path)
+        }
+      }
+      values.id = '';
+      values.logoHigh = values.logoHigh.file.response.res.path;
+      values.logoLow = values.logoLow.file.response.res.path;
+      values.provinceCode = values.provinceName[0]
+      values.cityCode = values.provinceName[1];
+      values.countyCode = values.provinceName[2];
+      values.provinceName = that.state.label[0].label;
+      values.cityName = that.state.label[1].label;
+      values.countyName = that.state.label[2].label;
+      console.log(values.imgs);
+      values.imgs ="" +imgarr+ "";
+      console.log(values.imgs);
+      console.log(values);
       const params = {
         ...values,
         releaseTime: func.format(values.releaseTime),
@@ -46,9 +66,10 @@ class NoticeAdd extends PureComponent {
       value: '',
     });
 
-  onChange = value => {
+  onChange = (value,label) => {
     console.log(value);
-    this.setState({ value });
+    console.log(label);
+    this.setState({ value,label });
   };
   onClickReset = () => {
     const { onReset } = this.state;
@@ -72,6 +93,7 @@ class NoticeAdd extends PureComponent {
   disabledDate = current =>
     // Can not select days before today
     current && current < moment().endOf('day');
+
   render() {
     const {
       form: { getFieldDecorator },
@@ -123,43 +145,24 @@ class NoticeAdd extends PureComponent {
               })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.province_name" />}>
-              {getFieldDecorator('province_name', {
+              {getFieldDecorator('provinceName', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                    message: formatMessage({ id: 'desk.notice.category.validation' }),
                   },
                 ],
-              })(<TreeSelect
-                    showSearch
-                    style={{ width: '100%' }}
-                    value=''
-                    dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                    placeholder="Please select"
-                    allowClear
-                    treeDefaultExpandAll
-                    onChange={this.onChange}
-                  >
-                        <TreeNode value="parent 1" title="parent 1" key="0-1">
-                        <TreeNode value="parent 1-0" title="parent 1-0" key="0-1-1">
-                          <TreeNode value="leaf1" title="my leaf" key="random" />
-                          <TreeNode value="leaf2" title="your leaf" key="random1" />
-                        </TreeNode>
-                        <TreeNode value="parent 1-1" title="parent 1-1" key="random2">
-                        <TreeNode value="sss" title={<b style={{ color: '#08c' }}>sss</b>} key="random3" />
-                        </TreeNode>
-                        </TreeNode>
-                  </TreeSelect>)}
+              })(<Cascader options={cityArray} onChange={this.onChange} placeholder={formatMessage({ id: 'desk.notice.category.placeholder' })} />)}
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.location" />}>
               {getFieldDecorator('location', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                    message: formatMessage({ id: 'desk.notice.location.validation' }),
                   },
                 ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+              })(<Input placeholder={formatMessage({ id: 'desk.notice.location.placeholder' })} />)}
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.lat" />}>
               {getFieldDecorator('lat', {
@@ -169,7 +172,7 @@ class NoticeAdd extends PureComponent {
                     message: formatMessage({ id: 'desk.notice.title.validation' }),
                   },
                 ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+              })(<Input placeholder="请输入lat"/>)}
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.lng" />}>
               {getFieldDecorator('lng', {
@@ -179,14 +182,14 @@ class NoticeAdd extends PureComponent {
                     message: formatMessage({ id: 'desk.notice.title.validation' }),
                   },
                 ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+              })(<Input placeholder="请输入lng"/>)}
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.logo_low" />}>
-              {getFieldDecorator('logo_low', {
+              {getFieldDecorator('logoLow', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                    message: formatMessage({ id: 'desk.notice.logo_low.validation' }),
                   },
                 ],
               })(<Dragger {...uploadProps} onChange={this.onUpload}>
@@ -198,11 +201,11 @@ class NoticeAdd extends PureComponent {
               </Dragger>)}
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.logo_high" />}>
-              {getFieldDecorator('logo_high', {
+              {getFieldDecorator('logoHigh', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                    message: formatMessage({ id: 'desk.notice.logo_high.validation' }),
                   },
                 ],
               })(<Dragger {...uploadProps} onChange={this.onUpload}>
@@ -218,7 +221,7 @@ class NoticeAdd extends PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                    message: formatMessage({ id: 'desk.notice.imgs.validation' }),
                   },
                 ],
               })(<Dragger {...uploadProps} onChange={this.onUpload}>
@@ -234,33 +237,33 @@ class NoticeAdd extends PureComponent {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                    message: formatMessage({ id: 'desk.notice.username.validation' }),
                   },
                 ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+              })(<Input placeholder={formatMessage({ id: 'desk.notice.username.placeholder' })} />)}
             </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.password" />}>
-              {getFieldDecorator('password', {
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.pwd" />}>
+              {getFieldDecorator('pwd', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'desk.notice.title.validation' }),
+                    message: formatMessage({ id: 'desk.notice.pwd.validation' }),
                   },
                 ],
-              })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+              })(<Input placeholder={formatMessage({ id: 'desk.notice.pwd.placeholder' })} />)}
             </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.desc" />}>
-              {getFieldDecorator('desc', {
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.description" />}>
+              {getFieldDecorator('description', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'desk.notice.desc.validation' }),
+                    message: formatMessage({ id: 'desk.notice.description.validation' }),
                   },
                 ],
               })(
                 <TextArea
                   style={{ minHeight: 32 }}
-                  placeholder={formatMessage({ id: 'desk.notice.desc.placeholder' })}
+                  placeholder={formatMessage({ id: 'desk.notice.description.placeholder' })}
                   rows={10}
                 />
               )}

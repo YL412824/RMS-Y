@@ -5,7 +5,10 @@ import request from '../utils/request';
 // =====================通知公告===========================
 
 export async function queryProjectNotice(params = {}) {
-  return request(`/api/blade-museum/mus/add?${stringify(params)}`);
+  return request('/api/blade-museum/mus/insert',{
+    method: 'POST',
+    body: func.toFormData(params),
+  });
 }
 
 // export async function list(params) {
@@ -33,5 +36,8 @@ export async function submit(params) {
 }
 
 export async function detail(params) {
-  return request(`/api/blade-museum/mus/detail?${stringify(params)}`);
+  return request('/api/blade-museum/mus/updata',{
+    method: 'POST',
+    body: params,
+  });
 }
