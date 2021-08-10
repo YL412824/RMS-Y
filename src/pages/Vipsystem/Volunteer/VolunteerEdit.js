@@ -4,7 +4,7 @@ import { formatMessage, FormattedMessage } from 'umi/locale';
 import { connect } from 'dva';
 import moment from 'moment';
 import Panel from '../../../components/Panel';
-import { NOTICE_INIT, NOTICE_DETAIL, NOTICE_SUBMIT } from '../../../actions/notice';
+import { VOLUNTEER_INIT, VOLUNTEER_DETAIL, VOLUNTEER_SUBMIT } from '../../../actions/volunteer';
 import { getAccessToken, getToken } from '../../../utils/authority';
 import func from '../../../utils/Func';
 import  cityArray  from "./cities";
@@ -13,12 +13,12 @@ const FormItem = Form.Item;
 const { TextArea } = Input;
 const { Dragger } = Upload;
 
-@connect(({ notice, loading }) => ({
-  notice,
-  submitting: loading.effects['notice/submit'],
+@connect(({ volunteer, loading }) => ({
+  volunteer,
+  submitting: loading.effects['volunteer/submit'],
 }))
 @Form.create()
-class NoticeAdd extends PureComponent {
+class VolunteerAdd extends PureComponent {
   componentWillMount() {
     const {
       dispatch,
@@ -26,8 +26,8 @@ class NoticeAdd extends PureComponent {
         params: { id },
       },
     } = this.props;
-    dispatch(NOTICE_INIT());
-    dispatch(NOTICE_DETAIL(id));
+    dispatch(VOLUNTEER_INIT());
+    dispatch(VOLUNTEER_DETAIL(id));
   }
 
   handleSubmit = e => {
@@ -46,7 +46,7 @@ class NoticeAdd extends PureComponent {
         ...values,
         releaseTime: func.format(values.releaseTime),
       };
-      dispatch(NOTICE_SUBMIT(params));
+      dispatch(VOLUNTEER_SUBMIT(params));
     });
   };
 
@@ -57,7 +57,7 @@ class NoticeAdd extends PureComponent {
   render() {
     const {
       form: { getFieldDecorator },
-      notice: { init, detail },
+      volunteer: { init, detail },
       submitting,
     } = this.props;
 
@@ -90,71 +90,71 @@ class NoticeAdd extends PureComponent {
     );
 
     return (
-      <Panel title={<FormattedMessage id="button.edit.name" />} back="/desk/notice" action={action}>
+      <Panel title={<FormattedMessage id="button.edit.name" />} back="/desk/volunteer" action={action}>
         <Card bordered={false}>
           <Form hideRequiredMark style={{ marginTop: 8 }}>
 
-              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.name" />}>
+              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.name" />}>
                 {getFieldDecorator('name', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({ id: 'desk.notice.title.validation' }),
+                      message: formatMessage({ id: 'desk.volunteer.title.validation' }),
                     },
                   ],
                   initialValue: detail.name,
-                })(<Input placeholder={formatMessage({ id: 'desk.notice.title.placeholder' })} />)}
+                })(<Input placeholder={formatMessage({ id: 'desk.volunteer.title.placeholder' })} />)}
               </FormItem>
-              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.province_name" />}>
+              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.province_name" />}>
                 {getFieldDecorator('provinceName', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({ id: 'desk.notice.category.validation' }),
+                      message: formatMessage({ id: 'desk.volunteer.category.validation' }),
                     },
                   ],
                   initialValue: detail.provinceName,
-                })(<Cascader options={cityArray} onChange={this.onChange} placeholder={formatMessage({ id: 'desk.notice.category.placeholder' })} />)}
+                })(<Cascader options={cityArray} onChange={this.onChange} placeholder={formatMessage({ id: 'desk.volunteer.category.placeholder' })} />)}
               </FormItem>
-              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.location" />}>
+              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.location" />}>
                 {getFieldDecorator('location', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({ id: 'desk.notice.location.validation' }),
+                      message: formatMessage({ id: 'desk.volunteer.location.validation' }),
                     },
                   ],
                   initialValue: detail.location,
-                })(<Input placeholder={formatMessage({ id: 'desk.notice.location.placeholder' })} />)}
+                })(<Input placeholder={formatMessage({ id: 'desk.volunteer.location.placeholder' })} />)}
               </FormItem>
-              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.lat" />}>
+              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.lat" />}>
                 {getFieldDecorator('lat', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({ id: 'desk.notice.title.validation' }),
+                      message: formatMessage({ id: 'desk.volunteer.title.validation' }),
                     },
                   ],
                   initialValue: detail.lat,
                 })(<Input placeholder="请输入lat"/>)}
               </FormItem>
-              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.lng" />}>
+              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.lng" />}>
                 {getFieldDecorator('lng', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({ id: 'desk.notice.title.validation' }),
+                      message: formatMessage({ id: 'desk.volunteer.title.validation' }),
                     },
                   ],
                   initialValue: detail.lng,
                 })(<Input placeholder="请输入lng"/>)}
               </FormItem>
-              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.logo_low" />}>
+              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.logo_low" />}>
                 {getFieldDecorator('logoLow', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({ id: 'desk.notice.logo_low.validation' }),
+                      message: formatMessage({ id: 'desk.volunteer.logo_low.validation' }),
                     },
                   ],
                   initialValue: detail.logoLow,
@@ -166,12 +166,12 @@ class NoticeAdd extends PureComponent {
                   <p className="ant-upload-hint">请上传 .png,.jpg 格式的文件</p>
                 </Dragger>)}
               </FormItem>
-              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.logo_high" />}>
+              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.logo_high" />}>
                 {getFieldDecorator('logoHigh', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({ id: 'desk.notice.logo_high.validation' }),
+                      message: formatMessage({ id: 'desk.volunteer.logo_high.validation' }),
                     },
                   ],
                   initialValue: detail.logoHigh,
@@ -183,12 +183,12 @@ class NoticeAdd extends PureComponent {
                   <p className="ant-upload-hint">请上传 .png,.jpg 格式的文件</p>
                 </Dragger>)}
               </FormItem>
-              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.imgs" />}>
+              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.imgs" />}>
                 {getFieldDecorator('imgs', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({ id: 'desk.notice.imgs.validation' }),
+                      message: formatMessage({ id: 'desk.volunteer.imgs.validation' }),
                     },
                   ],
                   initialValue: detail.imgs,
@@ -200,41 +200,41 @@ class NoticeAdd extends PureComponent {
                   <p className="ant-upload-hint">请上传 .png,.jpg 格式的文件</p>
                 </Dragger>)}
               </FormItem>
-              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.username" />}>
+              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.username" />}>
                 {getFieldDecorator('username', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({ id: 'desk.notice.username.validation' }),
+                      message: formatMessage({ id: 'desk.volunteer.username.validation' }),
                     },
                   ],
                   initialValue: detail.username,
-                })(<Input placeholder={formatMessage({ id: 'desk.notice.username.placeholder' })} />)}
+                })(<Input placeholder={formatMessage({ id: 'desk.volunteer.username.placeholder' })} />)}
               </FormItem>
-              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.pwd" />}>
+              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.pwd" />}>
                 {getFieldDecorator('pwd', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({ id: 'desk.notice.pwd.validation' }),
+                      message: formatMessage({ id: 'desk.volunteer.pwd.validation' }),
                     },
                   ],
                   initialValue: detail.pwd,
-                })(<Input placeholder={formatMessage({ id: 'desk.notice.pwd.placeholder' })} />)}
+                })(<Input placeholder={formatMessage({ id: 'desk.volunteer.pwd.placeholder' })} />)}
               </FormItem>
-              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.description" />}>
+              <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.description" />}>
                 {getFieldDecorator('description', {
                   rules: [
                     {
                       required: true,
-                      message: formatMessage({ id: 'desk.notice.description.validation' }),
+                      message: formatMessage({ id: 'desk.volunteer.description.validation' }),
                     },
                   ],
                   initialValue: detail.description,
                 })(
                   <TextArea
                     style={{ minHeight: 32 }}
-                    placeholder={formatMessage({ id: 'desk.notice.description.placeholder' })}
+                    placeholder={formatMessage({ id: 'desk.volunteer.description.placeholder' })}
                     rows={10}
                   />
                 )}
@@ -247,4 +247,4 @@ class NoticeAdd extends PureComponent {
   }
 }
 
-export default NoticeAdd;
+export default VolunteerAdd;

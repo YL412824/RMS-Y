@@ -4,15 +4,15 @@ import router from 'umi/router';
 import { FormattedMessage } from 'umi/locale';
 import { connect } from 'dva';
 import Panel from '../../../components/Panel';
-import { NOTICE_DETAIL } from '../../../actions/notice';
+import { VOLUNTEER_DETAIL } from '../../../actions/volunteer';
 
 const FormItem = Form.Item;
 
-@connect(({ notice }) => ({
-  notice,
+@connect(({ volunteer }) => ({
+  volunteer,
 }))
 @Form.create()
-class NoticeAdd extends PureComponent {
+class VolunteerAdd extends PureComponent {
   componentWillMount() {
     const {
       dispatch,
@@ -20,7 +20,7 @@ class NoticeAdd extends PureComponent {
         params: { id },
       },
     } = this.props;
-    dispatch(NOTICE_DETAIL(id));
+    dispatch(VOLUNTEER_DETAIL(id));
   }
 
   handleEdit = () => {
@@ -29,12 +29,12 @@ class NoticeAdd extends PureComponent {
         params: { id },
       },
     } = this.props;
-    router.push(`/desk/notice/edit/${id}`);
+    router.push(`/desk/volunteer/edit/${id}`);
   };
 
   render() {
     const {
-      notice: { detail },
+      volunteer: { detail },
     } = this.props;
 
     const formItemLayout = {
@@ -56,19 +56,19 @@ class NoticeAdd extends PureComponent {
     );
 
     return (
-      <Panel title={<FormattedMessage id="button.view.name" />} back="/desk/notice" action={action}>
+      <Panel title={<FormattedMessage id="button.view.name" />} back="/desk/volunteer" action={action}>
         <Card bordered={false}>
           <Form hideRequiredMark style={{ marginTop: 8 }}>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.museum_name" />}>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.museum_name" />}>
               <span>{detail.title}</span>
             </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.location" />}>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.location" />}>
               <span>{detail.categoryName}</span>
             </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.create_name" />}>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.create_name" />}>
               <span>{detail.releaseTime}</span>
             </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.create_time" />}>
+            <FormItem {...formItemLayout} label={<FormattedMessage id="desk.volunteer.create_time" />}>
               <span>{detail.content}</span>
             </FormItem>
           </Form>
@@ -78,4 +78,4 @@ class NoticeAdd extends PureComponent {
   }
 }
 
-export default NoticeAdd;
+export default VolunteerAdd;
