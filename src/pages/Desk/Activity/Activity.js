@@ -30,11 +30,15 @@ class Activity extends PureComponent {
 
     const payload = {
       ...params,
-      begin_date: dateRange ? func.format(dateRange[0], 'YYYY-MM-DD') : null,
-      end_date: dateRange ? func.format(dateRange[1], 'YYYY-MM-DD') : null,
+      pages:1,
+      // begin_date: dateRange ? func.format(dateRange[0], 'YYYY-MM-DD') : null,
+      // end_date: dateRange ? func.format(dateRange[1], 'YYYY-MM-DD') : null,
     };
 
     payload.dateRange = null;
+    delete payload.dateRange;
+    delete payload.begin_date;
+    delete payload.end_date;
 
     dispatch(ACTIVITY_LIST(payload));
   };
